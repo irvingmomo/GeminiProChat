@@ -39,6 +39,7 @@
     "@iconify-json/carbon": "^1.1.18",
     "@types/markdown-it": "^12.2.3",
     "@typescript-eslint/parser": "^5.60.0",
+    "@unocss/reset": "^0.50.8",
     "@vite-pwa/astro": "^0.1.1",
     "eslint-plugin-astro": "^0.27.1",
     "punycode": "^2.3.0",
