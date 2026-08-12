@@ -1,10 +1,13 @@
 # GeminiProChat
 
-English | [中文](README_cn.md) | [Italiano](README_it.md)
+English | [中文](README_cn.md) | [Italiano](README_it.md) | [日本語](README_jp.md)
 
 Minimal web UI for Gemini Pro Chat.
 
-Live demo: [Gemini Pro Chat](https://www.geminiprochat.com)
+> [!WARNING]
+> **Disclaimer:** This project is not affiliated with, endorsed by, or sponsored by Google. It is an independent project that uses Google's Gemini Pro API.
+
+Live demo: [Gemini Pro Chat](https://gprochat.orzllc.com)
 
 [![image](https://github.com/babaohuang/GeminiProChat/assets/559171/d02fd440-401a-410d-a112-4b10935624c6)](https://www.geminiprochat.com)
 
@@ -16,16 +19,6 @@ Live demo: [Gemini Pro Chat](https://www.geminiprochat.com)
 
 Just click the button above and follow the instructions to deploy your own copy of the app.
 
-> [!NOTE]
-> #### Solution for "User location is not supported for the API use"
-> If you encounter the issue **"User location is not supported for the API use"**, follow these steps to resolve it:
->
-> 1. Go to this [**palm-netlify-proxy**](https://github.com/antergone/palm-netlify-proxy) repo and click **"Deploy With Netlify"**.
-> 2. Once the deployment is complete, you will receive a domain name assigned by Netlify (e.g., `https://xxx.netlify.app`).
-> 3. In your **Gemini Pro Chat** project, set an environment variable named `API_BASE_URL` with the value being the domain you got from deploying the palm proxy (`https://xxx.netlify.app`).
-> 4. Redeploy your **Gemini Pro Chat** project to finalize the configuration. This should resolve the issue.
->
-> Thanks to [**antergone**](https://github.com/antergone/palm-netlify-proxy) for providing this solution.
 
 ### Deploy on Railway
 
@@ -66,6 +59,7 @@ You can control the website through environment variables.
 | `HEAD_SCRIPTS` | Inject analytics or other scripts before `</head>` of the page | ❌ |
 | `PUBLIC_SECRET_KEY` | Secret string for the project. Use for generating signatures for API calls | ❌ |
 | `SITE_PASSWORD` | Set password for site, support multiple password separated by comma. If not set, site will be public | ❌ |
+| `GEMINI_MODEL_NAME` | Customize the Gemini model to use. Defaults to `gemini-3.6-flash` if not set | ❌ |
 
 ## Running Locally
 
@@ -119,3 +113,8 @@ This project is inspired by and based on the following open-source project:
 If this repo is helpful to you, buy me a coffee,thank you very much!😄
 
 <a href="https://www.buymeacoffee.com/babaohuang" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
+## Recommended AI Tools
+
+
+[ElevenMusic | World's best AI music generator](https://elevenmusic.ai?utm_source=geminiprochatgithub)

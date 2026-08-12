@@ -1,4 +1,4 @@
-name: Lint CI
+name: CI
 
 on:
   push:
@@ -10,24 +10,24 @@ on:
       - main
 
 jobs:
-  lint:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
+        uses: pnpm/action-setup@v4
 
       - name: Set node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-          cache: pnpm
+          node-version: 24.x
 
       - name: Install
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Build
+        run: pnpm run build

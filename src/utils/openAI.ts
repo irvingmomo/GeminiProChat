@@ -1,33 +1,39 @@
-import { GoogleGenerativeAI } from '@fuyun/generative-ai'
+import { GoogleGenAI, HarmBlockThreshold, HarmCategory } from '@google/genai'
 
 const apiKey = (import.meta.env.GEMINI_API_KEY)
 const apiBaseUrl = (import.meta.env.API_BASE_URL)?.trim().replace(/\/$/, '')
+const modelName = (import.meta.env.GEMINI_MODEL_NAME) || 'gemini-3.6-flash'
 
-const genAI = apiBaseUrl
-  ? new GoogleGenerativeAI(apiKey, apiBaseUrl)
-  : new GoogleGenerativeAI(apiKey)
+const genAI = new GoogleGenAI({
+  apiKey,
+  httpOptions: apiBaseUrl ? { baseUrl: apiBaseUrl } : undefined,
+})
 
 export const startChatAndSendMessageStream = async(history: ChatMessage[], newMessage: string) => {
-  const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
-
-  const chat = model.startChat({
+  const chat = genAI.chats.create({
+    model: modelName,
     history: history.map(msg => ({
       role: msg.role,
-      parts: msg.parts.map(part => part.text).join(''), // Join parts into a single string
+      parts: [{ text: msg.parts.map(part => part.text).join('') }],
     })),
-    generationConfig: {
+    config: {
       maxOutputTokens: 8000,
+      safetySettings: [
+        { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+        { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+        { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
+        { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+      ],
     },
   })
 
-  // Use sendMessageStream for streaming responses
-  const result = await chat.sendMessageStream(newMessage)
+  const result = await chat.sendMessageStream({ message: newMessage })
 
   const encodedStream = new ReadableStream({
     async start(controller) {
       const encoder = new TextEncoder()
-      for await (const chunk of result.stream) {
-        const text = await chunk.text()
+      for await (const chunk of result) {
+        const text = chunk.text ?? ''
         const encoded = encoder.encode(text)
         controller.enqueue(encoded)
       }
