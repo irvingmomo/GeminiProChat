@@ -73,7 +73,7 @@ babaohuang/geminiprochat:latest
 | `HEAD_SCRIPTS` | 在页面的"</head>"之前注入分析或其他脚本 | ❌ |
 | `PUBLIC_SECRET_KEY` | 项目的密文字符串。用于为 API 调用生成签名 | ❌ |
 | `SITE_PASSWORD` | 为网站设置密码，支持用逗号分隔的多个密码。如果不设置，网站将允许公开访问 | ❌ |
-| `GEMINI_MODEL_NAME` | 自定义要使用的 Gemini 模型。如果不设置，默认为 `gemini-2.5-flash` | ❌ |
+| `GEMINI_MODEL_NAME` | 自定义要使用的 Gemini 模型。如果不设置，默认为 `gemini-3.6-flash` | ❌ |
 
 ## 本地运行
 
