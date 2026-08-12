@@ -213,7 +213,7 @@ export default () => {
 
   return (
     <div my-6>
-      {/* beautiful coming soon alert box, position: fixed, screen center, no transparent background, z-index 100*/}
+      {/* beautiful coming soon alert box, position: fixed, screen center, no transparent background, z-index 100 */}
       <Show when={showComingSoon()}>
         <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-100">
           <div class="bg-white rounded-md shadow-md p-6">
